@@ -19,22 +19,22 @@ Scope<GraphicsContext> GraphicsContext::Create()
 
 void GraphicsContext::GSetFlags()
 {
-    graphicsContext->SetFlags();
+    s_graphicsContext->SetFlags();
     GraphicsDebug::GSetDebugFlags();
 }
 
 void GraphicsContext::GSetWindow(GLFWwindow *window)
 {
-    graphicsContext->SetWindow(window);
+    s_graphicsContext->SetWindow(window);
 }
 
 void GraphicsContext::GLoadGlad()
 {
-    graphicsContext->LoadGlad();
+    s_graphicsContext->LoadGlad();
     GraphicsDebug::GEnableDebug();
 }
 
 void GraphicsContext::GSwapBuffers()
 {
-    graphicsContext->SwapBuffers();
+    s_graphicsContext->SwapBuffers();
 }

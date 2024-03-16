@@ -14,3 +14,5 @@
 #include "Events/Input.h"
 
 #include "SystemsManager/Layer.h"
+
+#include "GraphicsAPI/Gui/GuiLayer.h"

@@ -5,6 +5,14 @@
 #include "Renderer2D.h"
 #include "Events/Event.h"
 
+// Scene Rendering
+
+// Scene Debug Rendering
+
+// UI Rendering
+
+// UI Debug Rendering
+
 void Renderer2D::OnAttach()
 {
     //glAPI.SetFlags();
@@ -29,29 +37,19 @@ void Renderer2D::OnDetach()
 
 void Renderer2D::OnUpdate()
 {
-    glAPI->ClearColor(Math::vec4(.6f, .6f, .8f, 1));
-    glAPI->Clear();
-
-    // Scene Rendering
     // Temporary
     sh->Bind();
     vA->Bind();
     t02D->Bind(1);
     t12D->Bind(0);
-    glAPI->DrawIndexed(iB->GetCount());
+    RendererAPI::GDrawIndexed(iB->GetCount());
     t12D->UnBind(0);
     t02D->UnBind(1);
     vA->UnBind();
     sh->UnBind();
-    // Scene Debug Rendering
-
-    // UI Rendering
-
-    // UI Debug Rendering
 }
 
 void Renderer2D::OnWindowResize(Listener& listener)
 {
-    std::cout << "Window resized " << listener.metaData.ui16[0] << " " << listener.metaData.ui16[1] << std::endl;
-    glAPI->SetViewport(0, 0, listener.metaData.ui16[0], listener.metaData.ui16[1]);
+    RendererAPI::GSetViewport(0, 0, listener.metaData.ui16[0], listener.metaData.ui16[1]);
 }

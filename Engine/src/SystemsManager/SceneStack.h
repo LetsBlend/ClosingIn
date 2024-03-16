@@ -10,6 +10,9 @@ class Scene;
 class SceneStack
 {
 public:
+    SceneStack() = default;
+    ~SceneStack() = default;
+
     void PushScene(const std::string& name);
     void PopScene(const std::string& name);
     void PopAll();

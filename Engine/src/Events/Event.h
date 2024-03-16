@@ -37,8 +37,15 @@ struct EventContext
 
 struct Listener
 {
+    Listener(const EventType& type, const std::function<void(Listener&)>& ptr)
+    {
+        eventType = type;
+        listener = ptr;
+    }
+    ~Listener() = default;
+
     // The type of event listened to
-    EventType eventType;
+    EventType eventType = EventType::None;
     // Pointer to the listener
     std::function<void(Listener&)> listener = nullptr;
     // Data that is different for different events, for example

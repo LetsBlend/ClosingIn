@@ -15,6 +15,7 @@ public:
     Window(const std::string& name, const int& width, const int& height);
     ~Window();
 
+    void PollEvents();
     void OnUpdate() override;
 
     void SetSize(const uint16_t& width, const uint16_t& height);
@@ -22,7 +23,7 @@ public:
     void SetVSync(const bool& enabled);
     bool IsVSync();
 
-    GLFWwindow* GetWindow();
+    static GLFWwindow* GetWindow();
 
 private:
     struct WindowData
@@ -31,14 +32,14 @@ private:
         bool vsync = true;
         int focused = 1;
 
-        uint16_t width = 640;
-        uint16_t height = 480;
+        uint16_t width;
+        uint16_t height;
 
         uint16_t posX = 640;
         uint16_t posY = 480;
     };
 
-    GLFWwindow* window;
+    inline static GLFWwindow* window;
     WindowData data;
 };
 

@@ -148,7 +148,7 @@ enum class Button
 };
 
 // The types of Events available
-#define NUM_EVENTS 11
+#define NUM_EVENTS 12
 enum class EventType
 {
     None = 0,
@@ -162,6 +162,7 @@ enum class EventType
     MouseButtonPressed = 8,
     MouseButtonReleased = 9,
     MouseMoved = 10,
+    WindowOpen = 11,
     MouseScrolled = NUM_EVENTS
 };
 

@@ -25,7 +25,7 @@ private:
     virtual void SwapBuffers() = 0;
 
     static Scope<GraphicsContext> Create();
-    inline static Scope<GraphicsContext> graphicsContext = GraphicsContext::Create();
+    inline static Scope<GraphicsContext> s_graphicsContext = GraphicsContext::Create();
 };
 
 

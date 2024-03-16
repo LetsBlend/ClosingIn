@@ -8,10 +8,11 @@ project(Engine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(Engine/src Engine/vendor/glm Engine/vendor/glfw/include Engine/vendor/glad/include Engine/vendor)
+include_directories(Engine/src Engine/vendor/glm Engine/vendor/glfw/include Engine/vendor/glad/include Engine/vendor/imgui Engine/vendor)
 
 add_subdirectory(Engine/vendor/glfw)
 add_subdirectory(Engine/vendor/glad)
+add_subdirectory(Engine/vendor/imgui)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     message("debug mode")
@@ -57,8 +58,8 @@ add_library(Engine
         Engine/src/EngineTime.h
         Engine/src/EngineTime.cpp
         Engine/src/Defines.h
-        Engine/src/Renderer2D/Renderer2D.cpp
-        Engine/src/Renderer2D/Renderer2D.h
+        Engine/src/Renderer/Renderer2D/Renderer2D.cpp
+        Engine/src/Renderer/Renderer2D/Renderer2D.h
         Engine/src/GraphicsAPI/OpenGL/OpenGLContext.cpp
         Engine/src/GraphicsAPI/OpenGL/OpenGLContext.h
         Engine/src/GraphicsAPI/OpenGL/OpenGLRendererAPI.cpp
@@ -87,7 +88,19 @@ add_library(Engine
         Engine/src/GraphicsAPI/GraphicsContext.cpp
         Engine/src/GraphicsAPI/GraphicsContext.h
         Engine/src/GraphicsAPI/GraphicsDebug.cpp
-        Engine/src/GraphicsAPI/GraphicsDebug.h)
+        Engine/src/GraphicsAPI/GraphicsDebug.h
+        Engine/src/GraphicsAPI/Gui/GlfwGui.cpp
+        Engine/src/GraphicsAPI/Gui/GlfwGui.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.h
+        Engine/src/GraphicsAPI/Gui/GuiLayer.cpp
+        Engine/src/GraphicsAPI/Gui/GuiLayer.h
+        Engine/src/Renderer/ClearRender.cpp
+        Engine/src/Renderer/ClearRender.h
+        Engine/src/Renderer/EditorGui.cpp
+        Engine/src/Renderer/EditorGui.h
+        Engine/src/GraphicsAPI/Gui/GuiHandle.cpp
+        Engine/src/GraphicsAPI/Gui/GuiHandle.h)
 target_precompile_headers(Engine PUBLIC Engine/src/pch.h)
 
 #//////////////////////////////////////////////////////////////////////////////////
@@ -102,6 +115,6 @@ add_executable(ClosingIn
         ClosingIn/main.cpp
         ClosingIn/Level-GreenHill/GameLayer.cpp
         ClosingIn/Level-GreenHill/GameLayer.h)
-target_link_libraries(ClosingIn PRIVATE Engine glfw glad)
+target_link_libraries(ClosingIn PRIVATE Engine glfw glad imgui)
 
 #//////////////////////////////////////////////////////////////////////////////////

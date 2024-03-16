@@ -39,8 +39,6 @@ private:
             1, 2, 3    // second triangle
     };
 
-    Ref<RendererAPI> glAPI = RendererAPI::Create();
-
     Ref<VertexBuffer> vB = VertexBuffer::Create(vertices, sizeof(vertices));
 
     Ref<IndexBuffer> iB = IndexBuffer::Create(indices, sizeof(indices), 6);

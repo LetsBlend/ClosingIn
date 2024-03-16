@@ -38,6 +38,10 @@ Window::Window(const std::string &name, const int &width, const int &height)
     glfwSetWindowUserPointer(window, &data);
     SetVSync(data.vsync);
 
+    EventContext e0{};
+    e0.ui64[0] = (intptr_t)window;
+    Event::PushEvent(EventType::WindowOpen, e0);
+
     glfwSetWindowCloseCallback(window, [](GLFWwindow* callback)
     {
         Event::PushEvent(EventType::WindowClose);
@@ -135,10 +139,10 @@ Window::Window(const std::string &name, const int &width, const int &height)
     });
 
     // To Set the viewport
-    EventContext e{};
-    e.ui16[0] = width;
-    e.ui16[1] = height;
-    Event::PushEvent(EventType::WindowResize, e);
+    EventContext e1{};
+    e1.ui16[0] = width;
+    e1.ui16[1] = height;
+    Event::PushEvent(EventType::WindowResize, e1);
 }
 
 Window::~Window()
@@ -146,10 +150,15 @@ Window::~Window()
     glfwTerminate();
 }
 
-void Window::OnUpdate()
+void Window::PollEvents()
 {
     glfwPollEvents();
     Event::FireEvents();
+}
+
+void Window::OnUpdate()
+{
+    PollEvents();
     GraphicsContext::GSwapBuffers();
 }
 
