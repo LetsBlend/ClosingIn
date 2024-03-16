@@ -5,7 +5,7 @@
 #include "OpenGLRendererAPI.h"
 #include "glad/glad.h"
 
-void OpenGLRendererAPI::StartUp()
+void OpenGLRendererAPI::SetFlags()
 {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -15,6 +15,11 @@ void OpenGLRendererAPI::StartUp()
 void OpenGLRendererAPI::SetViewport(uint16 posX, uint16 posY, uint16 width, uint16 height)
 {
     glViewport(posX, posY, width, height);
+}
+
+void OpenGLRendererAPI::DrawIndexed(uint32 indexCount)
+{
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 }
 
 void OpenGLRendererAPI::ClearColor(const glm::vec4 &color)

@@ -39,13 +39,14 @@ uint32 OpenGLVertexBuffer::GetID()
 /////////////////////////////////////////////////////////////////////
 // Index Buffer
 /////////////////////////////////////////////////////////////////////
-OpenGLIndexBuffer::OpenGLIndexBuffer(const void *indices, uint32 size)
+OpenGLIndexBuffer::OpenGLIndexBuffer(const void *indices, uint32 size, uint32 count)
 {
     glGenBuffers(1, &indexBufferID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, GL_STATIC_DRAW);
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    this->count = count;
 }
 
 OpenGLIndexBuffer::~OpenGLIndexBuffer()
@@ -66,4 +67,9 @@ void OpenGLIndexBuffer::UnBind()
 uint32 OpenGLIndexBuffer::GetID()
 {
     return indexBufferID;
+}
+
+uint32 OpenGLIndexBuffer::GetCount()
+{
+    return count;
 }

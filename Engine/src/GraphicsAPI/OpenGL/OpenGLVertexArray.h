@@ -5,18 +5,19 @@
 #ifndef CLOSINGIN_OPENGLVERTEXARRAY_H
 #define CLOSINGIN_OPENGLVERTEXARRAY_H
 
+#include "GraphicsAPI/VertexArray.h"
 
-class OpenGLVertexArray
+class OpenGLVertexArray : public VertexArray
 {
 public:
     OpenGLVertexArray();
-    ~OpenGLVertexArray();
+    ~OpenGLVertexArray() override;
 
-    void AddVertexBuffer();
+    void SetLayout() override;
 
-    void Bind();
-    void UnBind();
-    uint32 GetID();
+    void Bind() override;
+    void UnBind() override;
+    uint32 GetID() override;
 
 private:
     uint32 vertexArrayID;

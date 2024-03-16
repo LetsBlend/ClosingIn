@@ -8,6 +8,8 @@
 
 #include "Events/Event.h"
 
+#include "GraphicsAPI/GraphicsContext.h"
+
 Window::Window(const std::string &name, const int &width, const int &height)
 {
     data.name = name;
@@ -17,7 +19,11 @@ Window::Window(const std::string &name, const int &width, const int &height)
     if(!glfwInit())
         return; // <- Assertions please Daddy, assert me harder
 
+    GraphicsContext::GSetFlags();
+
     window = glfwCreateWindow(data.width, data.height, data.name.c_str(), nullptr, nullptr);
+
+    GraphicsContext::GSetWindow(window);
 
     if(!window)
     {
@@ -27,7 +33,7 @@ Window::Window(const std::string &name, const int &width, const int &height)
 
     glfwMakeContextCurrent(window);
 
-    m_Context.StartUp(window);
+    GraphicsContext::GLoadGlad();
 
     glfwSetWindowUserPointer(window, &data);
     SetVSync(data.vsync);
@@ -144,7 +150,7 @@ void Window::OnUpdate()
 {
     glfwPollEvents();
     Event::FireEvents();
-    m_Context.SwapBuffers();
+    GraphicsContext::GSwapBuffers();
 }
 
 void Window::SetVSync(const bool& enabled)

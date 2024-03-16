@@ -12,7 +12,7 @@ class Scene;
 class Layer;
 
 class Window;
-class Renderer;
+class Renderer2D;
 
 class Engine
 {
@@ -47,7 +47,7 @@ private:
     inline static bool run = true;
 
     inline static Ref<Window> m_Window;
-    inline static Ref<Renderer> m_Renderer;
+    inline static Ref<Renderer2D> m_Renderer;
     inline static Engine* s_Instance = nullptr;
 };
 

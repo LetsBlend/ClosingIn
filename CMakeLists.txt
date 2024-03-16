@@ -8,13 +8,12 @@ project(Engine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(Engine/src Engine/vendor/glm Engine/vendor/glfw/include Engine/vendor/glad/include)
+include_directories(Engine/src Engine/vendor/glm Engine/vendor/glfw/include Engine/vendor/glad/include Engine/vendor)
 
 add_subdirectory(Engine/vendor/glfw)
 add_subdirectory(Engine/vendor/glad)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(CMAKE_BUILD_TYPE Debug)
     message("debug mode")
     add_compile_definitions(DEBUG)
 elseif (CMAKE_BUILD_TYPE MATCHES Release)
@@ -58,18 +57,37 @@ add_library(Engine
         Engine/src/EngineTime.h
         Engine/src/EngineTime.cpp
         Engine/src/Defines.h
-        Engine/src/Renderer/Renderer.cpp
-        Engine/src/Renderer/Renderer.h
-        Engine/src/Renderer/OpenGL/OpenGLContext.cpp
-        Engine/src/Renderer/OpenGL/OpenGLContext.h
-        Engine/src/Renderer/OpenGL/OpenGLRendererAPI.cpp
-        Engine/src/Renderer/OpenGL/OpenGLRendererAPI.h
-        Engine/src/Renderer/OpenGL/OpenGLBuffers.cpp
-        Engine/src/Renderer/OpenGL/OpenGLBuffers.h
-        Engine/src/Renderer/OpenGL/OpenGLShaders.cpp
-        Engine/src/Renderer/OpenGL/OpenGLShaders.h
-        Engine/src/Renderer/OpenGL/OpenGLVertexArray.cpp
-        Engine/src/Renderer/OpenGL/OpenGLVertexArray.h)
+        Engine/src/Renderer2D/Renderer2D.cpp
+        Engine/src/Renderer2D/Renderer2D.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLContext.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLContext.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLRendererAPI.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLRendererAPI.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLBuffers.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLBuffers.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLShader.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLShader.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLVertexArray.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLVertexArray.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLDebug.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLDebug.h
+        Engine/vendor/stb/stb_image.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLTextures.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLTextures.h
+        Engine/src/GraphicsAPI/Buffers.cpp
+        Engine/src/GraphicsAPI/Buffers.h
+        Engine/src/GraphicsAPI/RendererAPI.cpp
+        Engine/src/GraphicsAPI/RendererAPI.h
+        Engine/src/GraphicsAPI/VertexArray.cpp
+        Engine/src/GraphicsAPI/VertexArray.h
+        Engine/src/GraphicsAPI/Textures.cpp
+        Engine/src/GraphicsAPI/Textures.h
+        Engine/src/GraphicsAPI/Shader.cpp
+        Engine/src/GraphicsAPI/Shader.h
+        Engine/src/GraphicsAPI/GraphicsContext.cpp
+        Engine/src/GraphicsAPI/GraphicsContext.h
+        Engine/src/GraphicsAPI/GraphicsDebug.cpp
+        Engine/src/GraphicsAPI/GraphicsDebug.h)
 target_precompile_headers(Engine PUBLIC Engine/src/pch.h)
 
 #//////////////////////////////////////////////////////////////////////////////////

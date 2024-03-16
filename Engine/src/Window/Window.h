@@ -6,7 +6,6 @@
 #define CLOSING_WINDOW_H
 
 #include "SystemsManager/Layer.h"
-#include "Renderer/OpenGl/OpenGLContext.h"
 
 class GLFWwindow;
 
@@ -41,8 +40,6 @@ private:
 
     GLFWwindow* window;
     WindowData data;
-
-    OpenGLContext m_Context;
 };
 
 

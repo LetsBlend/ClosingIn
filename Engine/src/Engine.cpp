@@ -15,7 +15,7 @@
 #include "SystemsManager/Scene.h"
 #include "SystemsManager/SceneStack.h"
 
-#include "Renderer/Renderer.h"
+#include "Renderer2D/Renderer2D.h"
 
 Engine::Engine()
 {
@@ -34,7 +34,7 @@ void Engine::Run()
     sceneStack = &stack;
 
     m_Window = CreateRef<Window>("ClosingIn", 640, 480);
-    m_Renderer = CreateRef<Renderer>();
+    m_Renderer = CreateRef<Renderer2D>();
 
     Event::StartUp();
     Input::StartUp(m_Window->GetWindow());
