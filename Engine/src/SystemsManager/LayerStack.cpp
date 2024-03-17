@@ -10,14 +10,29 @@ LayerStack::~LayerStack()
     PopAll();
 }
 
-void LayerStack::PushLayer(const Ref<Layer>& layer)
+void LayerStack::PushUserLayer(const Ref<Layer>& layer)
 {
-    layerPtrs.insert(layerPtrs.begin() + userLayerStartIndex + currentLayerIndex, layer);
-    currentLayerIndex++;
+    layerPtrs.insert(layerPtrs.begin() + currentUserLayerIndex, layer);
+    currentUserLayerIndex++;
     layer->OnAttach();
 }
 
-void LayerStack::PopLayer(const Ref<Layer>& layer)
+void LayerStack::PushEngineLayer(const Ref<Layer> &layer)
+{
+    layerPtrs.push_back(layer);
+    layer->OnAttach();
+}
+
+void LayerStack::PopUserLayer(const Ref<Layer>& layer)
+{
+    layer->OnDetach();
+    currentUserLayerIndex--;
+    auto id = std::find(layerPtrs.begin(), layerPtrs.end(), layer);
+
+    layerPtrs.erase(id);
+}
+
+void LayerStack::PopEngineLayer(const Ref<Layer> &layer)
 {
     layer->OnDetach();
     auto id = std::find(layerPtrs.begin(), layerPtrs.end(), layer);
@@ -25,18 +40,33 @@ void LayerStack::PopLayer(const Ref<Layer>& layer)
     layerPtrs.erase(id);
 }
 
-void LayerStack::PushOverlay(const Ref<Layer> &overlay)
+void LayerStack::PushUserOverlay(const Ref<Layer> &overlay)
 {
-    layerPtrs.insert(layerPtrs.end() + userOverlayStartIndex + currentOverlayIndex, overlay);
-    currentOverlayIndex++;
+    layerPtrs.insert(layerPtrs.end() + currentUserOverlayIndex, overlay);
+    currentUserOverlayIndex++;
     overlay->OnAttach();
 }
 
-void LayerStack::PopOverlay(const Ref<Layer> &overlay)
+void LayerStack::PushEngineOverlay(const Ref<Layer> &overlay)
+{
+    layerPtrs.push_back(overlay);
+    overlay->OnAttach();
+}
+
+void LayerStack::PopUserOverlay(const Ref<Layer> &overlay)
 {
     overlay->OnDetach();
-    auto id = std::find(layerPtrs.begin(), layerPtrs.end(), overlay);
+    currentUserOverlayIndex--;
 
+    auto id = std::find(layerPtrs.begin(), layerPtrs.end(), overlay);
+    layerPtrs.erase(id);
+}
+
+void LayerStack::PopEngineOverlay(const Ref<Layer> &overlay)
+{
+    overlay->OnDetach();
+
+    auto id = std::find(layerPtrs.begin(), layerPtrs.end(), overlay);
     layerPtrs.erase(id);
 }
 

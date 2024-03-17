@@ -3,8 +3,8 @@
 //
 
 #include "GuiHandle.h"
-#include "GlfwGui.h"
-#include "GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.h"
+#include "GraphicsAPI/GlfwGui/GlfwGui.h"
+#include "GraphicsAPI/OpenGL/OpenGLGui/OpenGLGui.h"
 
 #include "Events/Event.h"
 #include "Window/Window.h"
@@ -17,6 +17,9 @@ GuiHandle::GuiHandle()
 
     ImGuiIO& io = ImGui::GetIO();
     io.BackendFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.BackendFlags |= ImGuiConfigFlags_NavEnableGamepad;
+
+    io.BackendFlags |= ImGuiConfigFlags_DockingEnable;
     io.BackendFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
     switch (RendererAPI::GetAPI())

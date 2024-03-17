@@ -3,8 +3,8 @@
 //
 
 #include "GuiLayer.h"
-#include "GlfwGui.h"
-#include "GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.h"
+#include "GraphicsAPI/GlfwGui/GlfwGui.h"
+#include "GraphicsAPI/OpenGL/OpenGLGui/OpenGLGui.h"
 
 #include "GraphicsAPI/RendererAPI.h"
 

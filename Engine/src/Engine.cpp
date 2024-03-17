@@ -15,7 +15,7 @@
 #include "SystemsManager/Scene.h"
 #include "SystemsManager/SceneStack.h"
 
-#include "GraphicsAPI/Gui/GuiHandle.h"
+#include "GraphicsAPI/GuiHandle.h"
 #include "Renderer/Renderer2D/Renderer2D.h"
 #include "Renderer/EditorGui.h"
 #include "Renderer/ClearRender.h"
@@ -91,30 +91,24 @@ void Engine::PushScene(const std::string& scene)
 
 // Push Layers:
     // Push all engine layers which shall run before the users
-    scenePtr->layerStack.PushLayer(m_Window); // 1st
+    scenePtr->layerStack.PushEngineLayer(m_Window); // 1st
 
-    // Set range where user can push layers
-    scenePtr->layerStack.userLayerStartIndex = 1;
-    scenePtr->layerStack.userLayerEndIndex = scenePtr->layerStack.userLayerStartIndex;
-    // Reset currentLayerIndex since its dependent on userLayerStartIndex
-    scenePtr->layerStack.currentLayerIndex = 0;
+    // Set where user can push layers
+    scenePtr->layerStack.currentUserLayerIndex = 1;
 
     // Push all engine layers which shall be run after the user layers
-    scenePtr->layerStack.PushLayer(m_ClearRender);
-    scenePtr->layerStack.PushLayer(m_Renderer);
+    scenePtr->layerStack.PushEngineLayer(m_ClearRender);
+    scenePtr->layerStack.PushEngineLayer(m_Renderer);
 
 // Push Overlays:
     // Push all engine overlays which shall run before the users
     //...                                     // 0st
 
     // Set range where user can push overlays
-    scenePtr->layerStack.userOverlayStartIndex = 0;
-    scenePtr->layerStack.userOverlayEndIndex = scenePtr->layerStack.userOverlayStartIndex;
-    // Reset currentOverlayIndex since its dependent on userOverlayStartIndex
-    scenePtr->layerStack.currentOverlayIndex = 0;
+    scenePtr->layerStack.currentUserOverlayIndex = 0;
 
     // Push all engine overlays which shall run after the users
-    scenePtr->layerStack.PushOverlay(m_EditorGui);
+    scenePtr->layerStack.PushEngineOverlay(m_EditorGui);
 }
 
 void Engine::PopScene(const std::string &scene)
@@ -137,15 +131,13 @@ void Engine::SwitchScene(const std::string& name)
 void Engine::PushLayer(const std::string& scene, const Ref<Layer>& layer)
 {
     Ref<Scene> scenePtr = sceneStack->GetScene(scene);
-    scenePtr->layerStack.PushLayer(layer);
-    scenePtr->layerStack.userLayerEndIndex++;
+    scenePtr->layerStack.PushUserLayer(layer);
 }
 
 void Engine::PopLayer(const std::string& scene, const Ref<Layer>& layer)
 {
     Ref<Scene> scenePtr = sceneStack->GetScene(scene);
-    scenePtr->layerStack.PopLayer(layer);
-    scenePtr->layerStack.userLayerEndIndex--;
+    scenePtr->layerStack.PopUserLayer(layer);
 }
 
 void Engine::StartUpScene()

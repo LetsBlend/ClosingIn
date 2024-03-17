@@ -19,5 +19,4 @@ void GameLayer::OnUpdate()
 {
     if(Input::GetKeyDown(KeyCode::M))
         std::cout << "M" << std::endl;
-    //std::cout << "updating gamelayer sub system" << std::endl;
 }

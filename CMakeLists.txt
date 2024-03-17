@@ -89,18 +89,18 @@ add_library(Engine
         Engine/src/GraphicsAPI/GraphicsContext.h
         Engine/src/GraphicsAPI/GraphicsDebug.cpp
         Engine/src/GraphicsAPI/GraphicsDebug.h
-        Engine/src/GraphicsAPI/Gui/GlfwGui.cpp
-        Engine/src/GraphicsAPI/Gui/GlfwGui.h
-        Engine/src/GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.cpp
-        Engine/src/GraphicsAPI/OpenGL/OpenGLGUI/OpenGLGui.h
-        Engine/src/GraphicsAPI/Gui/GuiLayer.cpp
-        Engine/src/GraphicsAPI/Gui/GuiLayer.h
+        Engine/src/GraphicsAPI/GlfwGui/GlfwGui.cpp
+        Engine/src/GraphicsAPI/GlfwGui/GlfwGui.h
+        Engine/src/GraphicsAPI/OpenGL/OpenGLGui/OpenGLGui.cpp
+        Engine/src/GraphicsAPI/OpenGL/OpenGLGui/OpenGLGui.h
+        Engine/src/SystemsManager/GuiLayer.cpp
+        Engine/src/SystemsManager/GuiLayer.h
         Engine/src/Renderer/ClearRender.cpp
         Engine/src/Renderer/ClearRender.h
         Engine/src/Renderer/EditorGui.cpp
         Engine/src/Renderer/EditorGui.h
-        Engine/src/GraphicsAPI/Gui/GuiHandle.cpp
-        Engine/src/GraphicsAPI/Gui/GuiHandle.h)
+        Engine/src/GraphicsAPI/GuiHandle.cpp
+        Engine/src/GraphicsAPI/GuiHandle.h)
 target_precompile_headers(Engine PUBLIC Engine/src/pch.h)
 
 #//////////////////////////////////////////////////////////////////////////////////

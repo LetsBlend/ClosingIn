@@ -5,7 +5,7 @@
 #ifndef CLOSINGIN_EDITORGUI_H
 #define CLOSINGIN_EDITORGUI_H
 
-#include "GraphicsAPI/Gui/GuiLayer.h"
+#include "SystemsManager/GuiLayer.h"
 
 class EditorGui : public GuiLayer
 {
