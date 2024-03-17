@@ -20,7 +20,7 @@ GuiHandle::GuiHandle()
     io.BackendFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
     io.BackendFlags |= ImGuiConfigFlags_DockingEnable;
-    io.BackendFlags |= ImGuiConfigFlags_NavEnableGamepad;
+    io.BackendFlags |= ImGuiConfigFlags_ViewportsEnable;
 
     switch (RendererAPI::GetAPI())
     {
