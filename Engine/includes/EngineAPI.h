@@ -9,6 +9,9 @@
 
 #include "pch.h"
 #include "Engine.h"
+#include "Debug/Logger.h"
+#include "Debug/Assert.h"
+#include "Util/ConsoleColours.h"
 
 #include "Events/Event.h"
 #include "Events/Input.h"

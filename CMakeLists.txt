@@ -50,6 +50,13 @@ add_library(Engine
         Engine/src/SystemsManager/LayerStack.h
         Engine/src/SystemsManager/SceneStack.cpp
         Engine/src/SystemsManager/SceneStack.h
+        Engine/src/Math/Math.h
+        Engine/src/Util/ConsoleColours.h
+        Engine/src/Util/ConsoleColours.h
+        Engine/src/Debug/Logger.cpp
+        Engine/src/Debug/Logger.h
+        Engine/src/Debug/Assert.cpp
+        Engine/src/Debug/Assert.h
         Engine/src/Window/Window.cpp
         Engine/src/Window/Window.h
         Engine/includes/EngineInit.h
@@ -70,6 +77,7 @@ add_library(Engine
         Engine/src/Renderer/OpenGL/OpenGLShaders.h
         Engine/src/Renderer/OpenGL/OpenGLVertexArray.cpp
         Engine/src/Renderer/OpenGL/OpenGLVertexArray.h)
+        
 target_precompile_headers(Engine PUBLIC Engine/src/pch.h)
 
 #//////////////////////////////////////////////////////////////////////////////////
