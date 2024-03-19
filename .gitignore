@@ -92,7 +92,7 @@ StyleCopReport.xml
 *.tmp
 *.tmp_proj
 *_wpftmp.csproj
-*.log
+*.Log
 *.tlog
 *.vspscc
 *.vssscc
@@ -149,7 +149,7 @@ _TeamCity*
 # Coverlet is a free, cross platform Code Coverage Tool
 coverage*.json
 coverage*.xml
-coverage*.info
+coverage*.Info
 
 # Visual Studio code coverage results
 *.coverage
@@ -289,7 +289,7 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
-# Visual Studio 6 build log
+# Visual Studio 6 build Log
 *.plg
 
 # Visual Studio 6 workspace options file

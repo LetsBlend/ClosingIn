@@ -21,6 +21,8 @@ public:
     void UpdateStartTime();
     void UpdateEndTime(const int& fps);
 
+    static std::string time_in_HH_MM_SS_MMM();
+
 private:
     std::chrono::system_clock::time_point startTime;
     std::chrono::system_clock::time_point endTime;

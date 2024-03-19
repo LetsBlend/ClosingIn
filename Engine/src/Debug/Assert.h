@@ -5,100 +5,83 @@
 #ifndef CLOSING_ASSERT_H
 #define CLOSING_ASSERT_H
 
-#include "Logger.h"
+#include "Debugger.h"
 
-#define debugBreak() asm volatile("int $0x03")
+#define debugBreak() std::cin.get()
 
-class Assert {
-public:
-    static void that(bool arg, Logger &logger, std::source_location location = std::source_location::current());
-
-    static void that(bool arg, std::source_location location = std::source_location::current() = std::source_location::current());
-
-    static void that(bool arg, Logger &logger, const std::string& msg, std::source_location location = std::source_location::current());
-
-    static void that(bool arg, const std::string &msg, std::source_location location = std::source_location::current());
-
-    template<typename T, typename U>
-    static void equals(T arg1, U arg2, Logger &logger, const std::string& msg, const std::source_location location = std::source_location::current()) {
-        if (!(arg1 == arg2)) {
-            logger.log("Assertion failed: " + msg, LogLevel::error, location);
-            debugBreak();
-        } else {
-            logger.log("Assertion passed", LogLevel::info, location);
-        }
+template<typename... Args>
+inline void Assert(bool arg, const Message& msg, Args... message)
+{
+    if (!arg)
+    {
+        Message msg1("Assertion failed: " + msg.message, msg.location);
+        Debug::Error(msg1, std::forward<Args>(message)...);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void equals(T arg1, U arg2, Logger &logger, const std::source_location location = std::source_location::current()) {
-        if (!(arg1 == arg2)) {
-            logger.log("Assertion failed: Arguments are not equal", LogLevel::error, location);
-            debugBreak();
-        } else {
-            logger.log("Assertion passed", LogLevel::info, location);
-        }
+template<typename T, typename U, typename... Args>
+inline void AssertEquals(T arg1, U arg2, const Message& msg, const Args&... message)
+{
+    if (!(arg1 == arg2))
+    {
+        Debug::Error(msg, "Assertion failed: ", std::forward<Args>(message)...);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void equals(T arg1, U arg2, const std::source_location location = std::source_location::current()) {
-        if (!(arg1 == arg2)) {
-            Logger::error("Assertion failed: Arguments are not equal", location);
-            debugBreak();
-        } else {
-            Logger::info("Assertion passed", location);
-        }
+template<typename T, typename U, typename... Args>
+inline void AssertUnequals(T arg1, U arg2, const Message& msg, const Args&... message)
+{
+    if (arg1 == arg2)
+    {
+        Debug::Error(msg, "Assertion failed: ", std::forward<Args>(message)...);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void equals(T arg1, U arg2, const std::string& msg, const std::source_location location = std::source_location::current()) {
-        if (!(arg1 == arg2)) {
-            Logger::error("Assertion failed: " + msg, location);
-            debugBreak();
-        } else {
-            Logger::info("Assertion passed", location);
-        }
+inline void Assert(bool arg, Logger &logger, std::source_location location = std::source_location::current());
+
+inline void Assert(bool arg, Logger &logger, const std::string& msg, std::source_location location = std::source_location::current());
+
+template<typename T, typename U>
+inline void AssertEquals(T arg1, U arg2, Logger &logger, std::source_location location = std::source_location::current())
+{
+    if (!(arg1 == arg2))
+    {
+        logger.Log("Assertion failed: Arguments are not equal", LogLevel::error, location);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void unequals(T arg1, U arg2, Logger &logger, const std::source_location location = std::source_location::current()) {
-        if (arg1 == arg2) {
-            logger.log("Assertion failed: Arguments are equal", LogLevel::error, location);
-            debugBreak();
-        } else {
-            logger.log("Assertion passed", LogLevel::info, location);
-        }
+template<typename T, typename U>
+inline void AssertEquals(T arg1, U arg2, Logger &logger, std::string& msg, const std::source_location location = std::source_location::current())
+{
+    if (!(arg1 == arg2))
+    {
+        logger.Log("Assertion failed: " + msg, LogLevel::error, location);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void unequals(T arg1, U arg2, Logger &logger, const std::string& msg, const std::source_location location = std::source_location::current()) {
-        if (arg1 == arg2) {
-            logger.log("Assertion failed: " + msg, LogLevel::error, location);
-            debugBreak();
-        } else {
-            logger.log("Assertion passed", LogLevel::info, location);
-        }
+template<typename T, typename U>
+inline void AssertUnequals(T arg1, U arg2, Logger &logger, std::source_location location = std::source_location::current())
+{
+    if (arg1 == arg2)
+    {
+        logger.Log("Assertion failed: Arguments are equal", LogLevel::error, location);
+        debugBreak();
     }
+}
 
-    template<typename T, typename U>
-    static void unequals(T arg1, U arg2, const std::source_location location = std::source_location::current()) {
-        if (arg1 == arg2) {
-            Logger::error("Assertion failed: Arguments are equal", location);
-            debugBreak();
-        } else {
-            Logger::info("Assertion passed", location);
-        }
+template<typename T, typename U>
+inline static void AssertUnequals(T arg1, U arg2, Logger &logger, const std::string& msg, std::source_location location = std::source_location::current())
+{
+    if (arg1 == arg2)
+    {
+        logger.Log("Assertion failed: " + msg, LogLevel::error, location);
+        debugBreak();
     }
-
-    template<typename T, typename U>
-    static void unequals(T arg1, U arg2, const std::string& msg, const std::source_location location = std::source_location::current()) {
-        if (arg1 == arg2) {
-            Logger::error("Assertion failed: " + msg, location);
-            debugBreak();
-        } else {
-            Logger::info("Assertion passed", location);
-        }
-    }
-};
-
+}
 
 #endif //CLOSING_ASSERT_H

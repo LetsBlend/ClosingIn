@@ -76,7 +76,10 @@ add_library(Engine
         Engine/src/Renderer/OpenGL/OpenGLShaders.cpp
         Engine/src/Renderer/OpenGL/OpenGLShaders.h
         Engine/src/Renderer/OpenGL/OpenGLVertexArray.cpp
-        Engine/src/Renderer/OpenGL/OpenGLVertexArray.h)
+        Engine/src/Renderer/OpenGL/OpenGLVertexArray.h
+        Engine/src/Util/string.h
+        Engine/src/Debug/Debugger.cpp
+        Engine/src/Debug/Debugger.h)
         
 target_precompile_headers(Engine PUBLIC Engine/src/pch.h)
 

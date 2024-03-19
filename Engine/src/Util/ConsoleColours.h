@@ -8,6 +8,7 @@ public:
     inline static const std::string RED = "\033[0;31m";     // RED
     inline static const std::string GREEN = "\033[0;32m";   // GREEN
     inline static const std::string YELLOW = "\033[0;33m";  // YELLOW
+    inline static const std::string YELLOW_CUSTOM = "\033[38;5;221m";  // YELLOW
     inline static const std::string BLUE = "\033[0;34m";    // BLUE
     inline static const std::string PURPLE = "\033[0;35m";  // PURPLE
     inline static const std::string CYAN = "\033[0;36m";    // CYAN

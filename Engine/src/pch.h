@@ -15,6 +15,7 @@
 #include <deque>
 #include <array>
 #include <vector>
+#include <list>
 #include <set>
 #include <map>
 #include <unordered_set>
@@ -24,5 +25,9 @@
 #include <format>
 
 #include "Math/Math.h"
+#include "Util/string.h"
+#include "Debug/Logger.h"
+#include "Debug/Debugger.h"
+#include "Debug/Assert.h"
 
 #include "Defines.h"

@@ -32,7 +32,6 @@ void Engine::Run()
     EngineTime engineTime;
     SceneStack stack;
     sceneStack = &stack;
-
     m_Window = CreateRef<Window>("ClosingIn", 640, 480);
     m_Renderer = CreateRef<Renderer>();
 
